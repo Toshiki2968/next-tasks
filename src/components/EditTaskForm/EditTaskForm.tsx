@@ -1,6 +1,6 @@
 "use client";
 
-import { FormState, updateTask } from "@/actions/Task";
+import { FormState, updateTask } from "@/actions/task";
 import { TaskDocument } from "@/models/task";
 import React, { useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
