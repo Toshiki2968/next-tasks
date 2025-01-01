@@ -2,7 +2,7 @@ import EditTaskForm from "@/components/EditTaskForm/EditTaskForm";
 import { TaskDocument } from "@/models/task";
 
 interface Params {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const getTask = async (id: string) => {
@@ -15,7 +15,8 @@ const getTask = async (id: string) => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const EditTaskPage = async ({ params }: Params) => {
+const EditTaskPage = async (props: Params) => {
+  const params = await props.params;
   const id = params.id;
   const task = await getTask(id);
   console.log(task);

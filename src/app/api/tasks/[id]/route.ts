@@ -1,10 +1,8 @@
 import { TaskModel } from "@/models/task";
 import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async (
-  _: NextRequest,
-  { params }: { params: { id: string } }
-) => {
+export const GET = async (_: NextRequest, props: { params: Promise<{ id: string }> }) => {
+  const params = await props.params;
   try {
     const task = await TaskModel.findById(params.id);
     if (!task) {

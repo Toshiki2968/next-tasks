@@ -2,8 +2,8 @@
 
 import { FormState, updateTask } from "@/actions/task";
 import { TaskDocument } from "@/models/task";
-import React, { useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import React, { useState, useActionState } from "react";
+import { useFormStatus } from "react-dom";
 
 interface EditTaskFormProps {
   task: TaskDocument;
@@ -18,7 +18,7 @@ const EditTaskForm: React.FC<EditTaskFormProps> = ({ task }) => {
   const updateTaskWithId = updateTask.bind(null, task._id);
 
   const initialState: FormState = { error: "" };
-  const [state, formAction] = useFormState(updateTaskWithId, initialState);
+  const [state, formAction] = useActionState(updateTaskWithId, initialState);
 
   const SubmitButton = () => {
     const { pending } = useFormStatus();
